@@ -14,7 +14,7 @@ set $down j
 set $up k
 set $right l
 # Your preferred terminal emulator
-set $term termite
+set $term alacritty
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
@@ -202,11 +202,11 @@ bindsym $mod+r mode "resize"
 # Read `man 5 sway-bar` for more information about this section.
 bar {
     position top
-	swaybar_command waybar
+	swaybar_command swaybar
     # When the status_command prints a new line to stdout, swaybar updates.
     # The default just shows the current date and time.
 #    status_command while date +'%Y-%m-%d %l:%M:%S %p'; do sleep 1; done
-	status_command conky -c ~/.config/conky/my.conf
+	status_command i3status
 
     colors {
         statusline #ffffff
