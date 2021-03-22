@@ -1,0 +1,8 @@
+[user]
+	email = ruzgardeniz.08@hotmail.com
+	name = bwqr
+
+[credential]
+	helper = store --file ~/.git-credentials
+[pull]
+	rebase = false

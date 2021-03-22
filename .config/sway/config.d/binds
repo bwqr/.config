@@ -1,8 +1,10 @@
 bindsym $mod+c exec --no-startup-id firefox
+bindsym $mod+x exec --no-startup-id chromium --enable-features=UseOzonePlatform --ozone-platform=wayland
 
-bindsym Mod1+space exec --no-startup-id "rofi -combi-modi window,run -show combi -modi combi"
-bindsym Mod1+r exec --no-startup-id gammastep -O 3000
-bindsym Mod1+t exec --no-startup-id gammastep -x
+#bindsym Mod1+space exec --no-startup-id "wofi --show run,drun"
+bindsym Mod1+space exec --no-startup-id "bemenu-run"
+bindsym Mod1+r exec --no-startup-id gammastep
+bindsym Mod1+t exec --no-startup-id pkill gammastep 
 
 bindsym $mod+u border none
 bindsym $mod+y border pixel 1
@@ -21,10 +23,9 @@ bindsym $mod+grave scratchpad show
 bindsym Mod1+q exec --no-startup-id swaymsg "output * dpms off"
 bindsym Mod1+w exec --no-startup-id swaymsg "output * dpms on"
 
-bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
-bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
-bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
-bindsym XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
+bindsym XF86AudioRaiseVolume exec amixer set Master 5%+
+bindsym XF86AudioLowerVolume exec amixer set Master 5%-
+bindsym XF86AudioMute exec amixer set Master toggle
 bindsym XF86AudioPlay exec playerctl play-pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
