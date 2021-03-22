@@ -1,0 +1,5 @@
+media-video/ffmpeg chromium
+app-crypt/gcr gtk
+app-crypt/pinentry gnome-keyring
+app-text/xmlto text
+app-text/ghostscript-gpl cups
