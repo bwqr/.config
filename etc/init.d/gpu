@@ -1,0 +1,18 @@
+#!/usr/bin/openrc-run
+
+description="Setting gpu for low"
+
+
+
+set_gpu() {
+	PATH=/sys/class/drm/card0/device
+	echo low > "$PATH/power_dpm_force_performance_level"
+#	echo 1 > "$PATH/hwmon/hwmon2/fan1_enable"
+#	echo 0 > "$PATH/hwmon/hwmon2/pwm1"
+}
+
+start() {
+#	ebegin "Setting gpu for low"
+	set_gpu
+#	eend $?
+}
