@@ -1,2 +1,4 @@
-exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+#exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec --no-startup-id playerctld
+exec --no-startup-id mako
+exec --no-startup-id 'gnome-keyring-daemon --start --components=secrets,pkcs11'

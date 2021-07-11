@@ -9,14 +9,30 @@ input "type:keyboard" {
 	repeat_rate 30
 }
 
-output HDMI-A-2 resolution 1920x1080@75Hz position 1920,0 bg /home/fmk/Pictures/wallpapers/sand.jpg stretch
+output HDMI-A-2 resolution 1920x1080@75Hz position 1920,0 bg /home/fmk/Pictures/wallpapers/the-lake-5.jpg stretch
 
-default_border pixel 0
 
-titlebar_padding 5 2
+titlebar_padding 8 3
 
 workspace_auto_back_and_forth yes
 
 assign [app_id="thunderbird"] 3
 for_window [urgent=latest] focus
+for_window [shell="xwayland"] title_format "%title [XWayland]"
 
+gaps outer 0
+gaps inner 8
+smart_gaps on
+
+smart_borders on
+default_border pixel 2 
+
+seat seat0 xcursor_theme Breeze_Snow 24
+
+
+# class                 border  backgr. text    indicator child_border
+client.focused          #ffffff #1c7dca #ffffff #2e9ef4   #ffffff
+client.focused_inactive #555555 #230614 #ffffff #484e50   #5f676a
+client.unfocused        #333333 #222222 #888888 #292d2e   #222222
+client.urgent           #2f343a #900000 #ffffff #900000   #900000
+client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c

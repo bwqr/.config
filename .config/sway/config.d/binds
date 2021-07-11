@@ -3,7 +3,7 @@ bindsym $mod+x exec --no-startup-id chromium --enable-features=UseOzonePlatform 
 
 #bindsym Mod1+space exec --no-startup-id "wofi --show run,drun"
 bindsym Mod1+space exec --no-startup-id "bemenu-run"
-bindsym Mod1+r exec --no-startup-id gammastep
+bindsym Mod1+r exec --no-startup-id "pkill gammastep || gammastep"
 bindsym Mod1+t exec --no-startup-id pkill gammastep 
 
 bindsym $mod+u border none

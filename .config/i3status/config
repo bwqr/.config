@@ -54,12 +54,12 @@ memory {
 
 cpu_temperature gpu_temp {
 	format = "%degrees °C"
-	path = "/sys/class/hwmon/hwmon3/temp1_input"
+	path = "/sys/class/hwmon/hwmon2/temp1_input"
 }
 
 cpu_temperature gpu_clock {
 	format = "GPU %degrees KHz"
-	path = "/sys/class/hwmon/hwmon3/freq1_input"
+	path = "/sys/class/hwmon/hwmon2/freq1_input"
 }
 
 tztime local {
@@ -72,5 +72,5 @@ cpu_usage {
 
 cpu_temperature 0 {
 	format = "%degrees °C"
-	path = "/sys/class/hwmon/hwmon2/temp1_input"
+	path = "/sys/class/hwmon/hwmon1/temp1_input"
 }
