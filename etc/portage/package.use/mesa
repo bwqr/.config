@@ -1,0 +1,3 @@
+media-libs/mesa vdpau vaapi
+media-video/ffmpeg vdpau vaapi
+x11-libs/libva vdpau utils

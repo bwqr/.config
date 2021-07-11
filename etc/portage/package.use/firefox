@@ -1,4 +1,4 @@
-www-client/firefox dbus hwaccel
+www-client/firefox dbus hwaccel geckodriver screencast
 media-libs/libpng apng
 media-libs/libvpx postproc
 dev-lang/python sqlite
