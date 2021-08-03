@@ -9,7 +9,7 @@ input "type:keyboard" {
 	repeat_rate 30
 }
 
-output HDMI-A-2 resolution 1920x1080@75Hz position 1920,0 bg /home/fmk/Pictures/wallpapers/the-lake-5.jpg stretch
+output HDMI-A-2 resolution 1920x1080@75Hz position 1920,0 bg /home/fmk/Pictures/wallpapers/fedora/f34/default/f34-02-night.png stretch
 
 
 titlebar_padding 8 3

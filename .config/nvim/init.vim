@@ -19,6 +19,8 @@ Plug 'hrsh7th/nvim-compe'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
+Plug 'vim-test/vim-test'
+
 " let g:deoplete#enable_at_startup = 1
 call plug#end()
 
@@ -105,6 +107,7 @@ set tabstop=4
 nnoremap ; :
 
 nnoremap <C-n> :Files .<CR>
+nnoremap <C-f> :BLines <CR>
 
 
 " Configure LSP
