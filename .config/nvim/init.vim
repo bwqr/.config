@@ -10,19 +10,23 @@ Plug 'nvim-lua/lsp_extensions.nvim'
 
 Plug 'hrsh7th/nvim-compe'
 
-" Plug 'HerringtonDarkholme/yats.vim'
-" For async completion
-" Plug 'Shougo/deoplete.nvim'
- " For Denite features
-"Plug 'Shougo/denite.nvim'
-
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
 Plug 'vim-test/vim-test'
 
-" let g:deoplete#enable_at_startup = 1
+Plug 'mhinz/vim-signify'
+Plug 'tpope/vim-fugitive'
+Plug 'evanleck/vim-svelte', {'branch': 'main'}
+
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'edkolev/tmuxline.vim'
+
 call plug#end()
+
+let g:gruvbox_contrast_dark='hard'
+colorscheme panda
 
 syntax enable
 filetype plugin indent on
@@ -60,6 +64,16 @@ inoremap <silent><expr> <CR>      compe#confirm('<CR>')
 inoremap <silent><expr> <C-e>     compe#close('<C-e>')
 inoremap <silent><expr> <C-f>     compe#scroll({ 'delta': +4 })
 inoremap <silent><expr> <C-d>     compe#scroll({ 'delta': -4 })
+
+let g:svelte_preprocessor_tags = [ { 'name': 'ts', 'tag': 'script', 'as': 'typescript' } ]
+let g:svelte_preprocessors = ['ts']
+
+set undodir=~/.vim/undodir
+set undofile
+
+" Airline Tmuxline
+let g:tmuxline_powerline_separators = 0
+
 " Set completeopt to have a better completion experience
 " :help completeopt
 " menuone: popup even when there's only one match
@@ -80,7 +94,7 @@ set cursorline
 set ignorecase
 
 " editor settings
-" set autoindent
+set autoindent
 set scrolloff=2
 
 " to remove jitter when a warning is shown
@@ -99,7 +113,8 @@ set foldmethod=syntax
 
 " map tab to space
 set expandtab
-set tabstop=4
+set softtabstop=4
+set shiftwidth=4
 
 " keyboard shortcuts
 "
@@ -107,8 +122,9 @@ set tabstop=4
 nnoremap ; :
 
 nnoremap <C-n> :Files .<CR>
-nnoremap <C-f> :BLines <CR>
+nnoremap <C-f> :Rg <CR>
 
+nnoremap <C-s> <C-^>
 
 " Configure LSP
 " https://github.com/neovim/nvim-lspconfig#rust_analyzer
@@ -160,7 +176,7 @@ end
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
 
-local servers = {"rust_analyzer", "tsserver", "phpactor" }
+local servers = {"rust_analyzer", "tsserver", "phpactor", "pyright", "hls", "ccls", "svelte"}
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup {
     on_attach = on_attach,
@@ -169,6 +185,14 @@ for _, lsp in ipairs(servers) do
     }
   }
 end
+
+-- angularls_cmd = {"npx", "ngserver", "--stdio", "--tsProbeLocations", "./" , "--ngProbeLocations", "./"}
+-- nvim_lsp.angularls.setup{
+--     cmd = angularls_cmd,
+--     on_new_config = function(new_config, new_root_dir)
+--         new_config.cmd = angularls_cmd
+--     end,
+-- }
 
 -- Enable diagnostics
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
