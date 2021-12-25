@@ -23,10 +23,11 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'edkolev/tmuxline.vim'
 
+Plug 'chriskempson/base16-vim'
+
 call plug#end()
 
-let g:gruvbox_contrast_dark='hard'
-colorscheme panda
+colorscheme base16-default-dark
 
 syntax enable
 filetype plugin indent on

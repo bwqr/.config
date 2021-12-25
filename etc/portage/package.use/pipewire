@@ -1,1 +1,3 @@
-media-video/pipewire pipewire-alsa
+media-video/pipewire pipewire-alsa gstreamer jack-client extra
+media-sound/pulseaudio -alsa-plugin -udev
+media-sound/jack2 dbus

@@ -1,80 +1,78 @@
 * {
-	font-size: 14px;
-	font-family: monospace;
+    border: none;
+    border-radius: 0;
+/*    font-family: "Ubuntu Nerd Font";*/
+    font-size: 14px;
+    min-height: 0;
 }
 
 window#waybar {
-	background: #292b2e;
-	color: #fdf6e3;
+    background: rgba(30,30,30,.3);
+    color: white;
 }
 
-#custom-right-arrow-dark,
-#custom-left-arrow-dark {
-	color: #1a1a1a;
-}
-#custom-right-arrow-light,
-#custom-left-arrow-light {
-	color: #292b2e;
-	background: #1a1a1a;
-}
-
-#workspaces,
-#clock,
-#pulseaudio,
-#memory,
-#cpu,
-#battery,
-#disk,
-#tray,
-#temperature,
-#network {
-	background: #1a1a1a;
+#window {
+    font-weight: bold;
+    font-family: "Ubuntu";
 }
 
 #workspaces button {
-	padding: 0 0px;
-	color: #fdf6e3;
+    padding: 0 5px;
+    color: white;
+    padding-top: 2px;
 }
+
 #workspaces button.focused {
-	color: #268bd2;
+    color: #4adfdf;
+    border-top: 3px solid #4adfdf;
+}
+
+#mode {
+    border-top: 3px solid #4adfdf;
+    background: transparent;
+}
+
+#clock, #cpu, #memory, #custom-gpu-info, #temperature, #network, #pulseaudio, #disk, #tray, #mode {
+    padding: 2 4px;
+    margin: 0 4px;
+/*    font-weight: bold;*/
+}
+
+
+@keyframes blink {
+    to {
+        background-color: #ffffff;
+        color: black;
+    }
+}
+
+#cpu {
+        color: white;
+}
+
+#cpu.critical {
+        color: red;
+}
+
+#memory {
+}
+
+#network {
+}
+
+#network.disconnected {
+    background: #f53c3c;
 }
 
 #pulseaudio {
-	color: #268bd2;
 }
-#memory {
-	color: #2aa198;
-}
-#cpu {
-	color: #6c71c4;
-}
-#battery {
-	color: #859900;
-}
-#disk {
-	color: #b58900;
+
+#pulseaudio.muted {
+        color: red;
 }
 
 #temperature {
-	color: #cc2332;
 }
 
-#network {
-	color: #21b813;
-}
-
-#clock {
-	color: #cdcd12;
-}
-
-#clock,
-#pulseaudio,
-#memory,
-#cpu,
-#battery,
-#disk,
-#temperature,
-#tray,
-#network {
-	padding: 0 5px;
+#tray {
 }

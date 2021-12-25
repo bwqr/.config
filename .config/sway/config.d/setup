@@ -4,12 +4,12 @@ input "type:mouse" {
 
 input "type:keyboard" {
 	xkb_layout us,tr
-#	xkb_options grp:alt_shift_toggle
+	xkb_options grp:alt_shift_toggle,caps:escape
 	repeat_delay 300
 	repeat_rate 30
 }
 
-output HDMI-A-2 resolution 1920x1080@75Hz position 1920,0 bg /home/fmk/Pictures/wallpapers/fedora/f34/default/f34-02-night.png stretch
+output HDMI-A-2 resolution 1920x1080@75Hz position 0,0 bg /home/fmk/Pictures/wallpapers/active.jpg stretch
 
 
 titlebar_padding 8 3
@@ -31,8 +31,9 @@ seat seat0 xcursor_theme Breeze_Snow 24
 
 
 # class                 border  backgr. text    indicator child_border
-client.focused          #ffffff #1c7dca #ffffff #2e9ef4   #ffffff
-client.focused_inactive #555555 #230614 #ffffff #484e50   #5f676a
-client.unfocused        #333333 #222222 #888888 #292d2e   #222222
-client.urgent           #2f343a #900000 #ffffff #900000   #900000
-client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
+client.focused          #d8d8d8 #7cafc2 #181818 #7cafc2  #7cafc2
+client.focused_inactive #282828 #282828 #d8d8d8 #585858  #282828
+client.unfocused        #282828 #181818 #d8d8d8 #282828  #282828
+client.urgent           #ab4642 #ab4642 #181818 #ab4642  #ab4642
+client.placeholder      #181818 #181818 #d8d8d8 #181818 #181818
+client.background       #f8f8f8

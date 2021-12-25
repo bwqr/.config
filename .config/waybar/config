@@ -1,127 +1,47 @@
-// -*- mode: json -*-
-
 {
-	"layer": "top",
-	"position": "bottom",
+    "layer": "top", 
+    "position": "top",
+    "height": 24, 
+    "modules-left": ["sway/workspaces", "sway/mode"],
+    "modules-center": ["sway/window"],
+    "modules-right": ["network", "cpu", "temperature", "custom/gpu-info", "memory", "disk", "clock", "tray"],
 
-	"modules-left": [
-		"sway/workspaces",
-		"custom/right-arrow-dark"
-	],
-	"modules-center": [],
-	"modules-right": [
-		"custom/left-arrow-dark",
-		"network",
-		"custom/left-arrow-light",
-		"custom/left-arrow-dark",
-		"pulseaudio",
-		"custom/left-arrow-light",
-		"custom/left-arrow-dark",
-		"memory",
-		"custom/left-arrow-light",
-		"custom/left-arrow-dark",
-		"disk",
-		"custom/left-arrow-light",
-		"custom/left-arrow-dark",
-		"cpu",
-		"custom/left-arrow-light",
-		"custom/left-arrow-dark",
-		"temperature",
-		"temperature#cpu",
-		"custom/left-arrow-light",
-		"custom/left-arrow-dark",
-		"clock",
-		"custom/left-arrow-light",
-		"custom/left-arrow-dark",
-		"tray"
-	],
+   "tray": {
+        "spacing": 10
+    },
 
-	"custom/left-arrow-dark": {
-		"format": "",
-		"tooltip": false
-	},
-	"custom/left-arrow-light": {
-		"format": "",
-		"tooltip": false
-	},
-	"custom/right-arrow-dark": {
-		"format": "",
-		"tooltip": false
-	},
-	"custom/right-arrow-light": {
-		"format": "",
-		"tooltip": false
-	},
+    "clock": {
+        "format": "{:%d/%m %H:%M}"
+    },
 
-	"sway/workspaces": {
-		"disable-scroll": true,
-		"format": " {name} "
-	},
-	"clock": {
-		"format": "{:%m-%d %H:%M}",
-		"tooltip": false
-	},
-	"pulseaudio": {
-		"format": "Sound {volume:2}%",
-		"format-bluetooth": "{icon}  {volume}%",
-		"format-muted": "MUTE",
-		"format-icons": {
-			"headphones": "",
-			"default": [
-				"",
-				""
-			]
-		},
-		"scroll-step": 5,
-		"on-click": "pamixer -t",
-		"on-click-right": "pavucontrol"
-	},
-	"memory": {
-		"interval": 2,
-		"format": "Mem {used:0.1f}G | {total:0.1f}G"
-	},
-	"cpu": {
-		"interval": 2,
-		"format": "CPU {usage:2}%"
-	},
-	"battery": {
-		"states": {
-			"good": 95,
-			"warning": 30,
-			"critical": 15
-		},
-		"format": "{icon} {capacity}%",
-		"format-icons": [
-			"",
-			"",
-			"",
-			"",
-			""
-		]
-	},
-	"disk": {
-		"interval": 5,
-		"format": "Disk {free} | {total}",
-		"path": "/"
-	},
-	"temperature": {
-		"hwmon-path-abs": "/sys/devices/pci0000:00/0000:00:03.1/0000:26:00.0/hwmon",
-		"input-filename": "temp1_input",
-		"format": "GPU {temperatureC}°C"
-	},
-	"temperature#cpu": {
-		"hwmon-path-abs": "/sys/devices/pci0000:00/0000:00:18.3/hwmon",
-		"input-filename": "temp1_input",
-		"format": "CPU {temperatureC}°C"
-	},
-	"network": {
-		"interface": "enp34s0",
-		"format-disconnected": "Disconnected",
-		"interval": 2,
-		"format": "{ifname} {ipaddr} {bandwidthDownBits} {bandwidthUpBits}"
-	},
-	"tray": {
-		"icon-size": 20,
-		"spacing": 5
-	}
+    "cpu": {
+        "format": "{usage}% {max_frequency} GHZ",
+        "interval": 5,
+        "states": {
+                "critical": 90
+        }
+    },
+
+    "memory": {
+        "format": "{used:0.1f} | {avail:0.1f} GB"
+    },
+
+    "disk": {
+        "format": "{free} | {total}"
+    },
+
+   "network": {
+        "format-ethernet": "{ifname} {ipaddr}/{cidr}",
+        "format-disconnected": "Disconnected"
+    },
+
+    "temperature": {
+            "hwmon-path": "/sys/class/hwmon/hwmon1/temp1_input",
+            "interval": 5
+    },
+
+    "custom/gpu-info": {
+        "exec": "/home/fmk/.local/bin/gpu-info.sh",
+        "interval": 5
+    }
 }
