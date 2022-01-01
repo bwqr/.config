@@ -1,8 +1,0 @@
-# /dev/nvme0n1p5
-UUID=1a204468-dbf8-4fc3-b71d-844eafa29339	/         	f2fs      	rw,relatime,lazytime,background_gc=on,discard,no_heap,inline_xattr,inline_data,inline_dentry,flush_merge,extent_cache,mode=adaptive,active_logs=6,alloc_mode=default,fsync_mode=posix	0 0
-
-# /dev/nvme0n1p1
-UUID=E48A-5BD3      	/boot/efi 	vfat      	rw,relatime,fmask=0022,dmask=0022,codepage=437,iocharset=iso8859-1,shortname=mixed,utf8,errors=remount-ro	0 2
-
-/dev/disk/by-uuid/203835684D17FAC5 /mnt/storage auto nosuid,nodev,nofail,x-gvfs-show 0 0
-/dev/disk/by-uuid/27cb101a-ae69-4bb6-9c38-d6d843a51a50 /mnt/lin auto nosuid,nodev,nofail,x-gvfs-show 0 0

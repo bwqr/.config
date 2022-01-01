@@ -1,2 +1,3 @@
-gui-wm/sway tray wallpapers seatd
-gui-libs/wlroots seatd
+gui-wm/sway wallpapers X tray
+gui-libs/wlroots X
+x11-libs/gdk-pixbuf jpeg
