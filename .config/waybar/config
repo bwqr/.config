@@ -4,10 +4,10 @@
     "height": 24, 
     "modules-left": ["sway/workspaces", "sway/mode"],
     "modules-center": ["sway/window"],
-    "modules-right": ["network", "cpu", "temperature", "custom/gpu-info", "memory", "disk", "clock", "tray"],
+    "modules-right": ["network", "cpu", "temperature", "custom/gpu-info", "memory", "disk", "pulseaudio", "clock", "tray"],
 
    "tray": {
-        "spacing": 10
+        "spacing": 10,
     },
 
     "clock": {
@@ -23,11 +23,11 @@
     },
 
     "memory": {
-        "format": "{used:0.1f} | {avail:0.1f} GB"
+        "format": "{used:0.1f}GB RAM"
     },
 
     "disk": {
-        "format": "{free} | {total}"
+        "format": "{used}"
     },
 
    "network": {
@@ -43,5 +43,10 @@
     "custom/gpu-info": {
         "exec": "/home/fmk/.local/bin/gpu-info.sh",
         "interval": 5
-    }
+    },
+
+    "pulseaudio": {
+            "scroll-step": 5,
+            "format": "{volume}%",
+    },
 }

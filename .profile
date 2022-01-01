@@ -1,8 +1,9 @@
 #!/bin/sh
 
-export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/.local/bin:$HOME/.local/share/npm/bin:$PATH"
 
 export VDPAU_DRIVER=radeonsi
+export LIBVA_DRIVER_NAME=radeonsi
 
 export RUSTFLAGS="-C link-arg=-fuse-ld=lld"
 

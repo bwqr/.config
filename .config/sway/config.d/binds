@@ -1,5 +1,5 @@
 bindsym $mod+c exec --no-startup-id firefox
-bindsym $mod+x exec --no-startup-id flatpak run org.chromium.Chromium
+bindsym $mod+x exec --no-startup-id flatpak run org.chromium.Chromium --enable-features=UseOzonePlatform --ozone-platform=wayland
 
 bindsym Mod1+space exec --no-startup-id "bemenu-run -n -H 30"
 bindsym Mod1+r exec --no-startup-id "pkill gammastep || gammastep"

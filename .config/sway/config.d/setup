@@ -12,11 +12,15 @@ input "type:keyboard" {
 output HDMI-A-2 resolution 1920x1080@75Hz position 0,0 bg /home/fmk/Pictures/wallpapers/active.jpg stretch
 
 
-titlebar_padding 8 3
+titlebar_padding 8 2
+titlebar_border_thickness 2
+font monospace 11
 
 workspace_auto_back_and_forth yes
 
 assign [app_id="thunderbird"] 3
+assign [app_id="rhythmbox"] 3
+assign [app_id="firefox"] 1
 for_window [urgent=latest] focus
 for_window [shell="xwayland"] title_format "%title [XWayland]"
 
@@ -27,8 +31,15 @@ smart_gaps on
 smart_borders on
 default_border pixel 2 
 
-seat seat0 xcursor_theme Breeze_Snow 24
+seat seat0 xcursor_theme BreezeX-Light 30
 
+set $gnome-schema org.gnome.desktop.interface
+exec_always {
+    gsettings set $gnome-schema gtk-theme 'Graphite-dark'
+    gsettings set $gnome-schema icon-theme 'breeze-dark'
+    gsettings set $gnome-schema cursor-theme 'BreezeX-Light'
+    gsettings set $gnome-schema font-name 'monospace 11'
+}
 
 # class                 border  backgr. text    indicator child_border
 client.focused          #d8d8d8 #7cafc2 #181818 #7cafc2  #7cafc2
