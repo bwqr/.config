@@ -69,7 +69,7 @@ set $menu dmenu_path | dmenu | xargs swaymsg exec --
     bindsym $mod+Shift+q kill
 
     # Start your launcher
-    bindsym $mod+d exec $menu
+    #bindsym $mod+d exec $menu
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
@@ -159,6 +159,9 @@ set $menu dmenu_path | dmenu | xargs swaymsg exec --
 
     # Move focus to the parent container
     bindsym $mod+a focus parent
+    bindsym $mod+Shift+a focus child
+    bindsym $mod+d focus mode_toggle
+
 #
 # Scratchpad:
 #

@@ -23,6 +23,8 @@ assign [app_id="rhythmbox"] 3
 assign [app_id="firefox"] 1
 for_window [urgent=latest] focus
 for_window [shell="xwayland"] title_format "%title [XWayland]"
+for_window [title="Firefox — Sharing Indicator"] floating enable
+for_window [title="Picture-in-Picture"] floating enable
 
 gaps outer 0
 gaps inner 8
@@ -38,13 +40,30 @@ exec_always {
     gsettings set $gnome-schema gtk-theme 'Graphite-dark'
     gsettings set $gnome-schema icon-theme 'breeze-dark'
     gsettings set $gnome-schema cursor-theme 'BreezeX-Light'
-    gsettings set $gnome-schema font-name 'monospace 11'
+    gsettings set $gnome-schema font-name 'Noto Sans 11'
 }
 
-# class                 border  backgr. text    indicator child_border
-client.focused          #d8d8d8 #7cafc2 #181818 #7cafc2  #7cafc2
-client.focused_inactive #282828 #282828 #d8d8d8 #585858  #282828
-client.unfocused        #282828 #181818 #d8d8d8 #282828  #282828
-client.urgent           #ab4642 #ab4642 #181818 #ab4642  #ab4642
+set $base00 #000000
+set $base01 #121212
+set $base02 #222222
+set $base03 #333333
+set $base04 #999999
+set $base05 #c1c1c1
+set $base06 #999999
+set $base07 #c1c1c1
+set $base08 #5f8787
+set $base09 #aaaaaa
+set $base0A #5f81a5
+set $base0B #d0dfee
+set $base0C #aaaaaa
+set $base0D #888888
+set $base0E #999999
+set $base0F #444444
+
+#                       Border  BG      Text    Ind     Child Border
+client.focused          $base0D $base0D $base00 $base0D $base0D
+client.focused_inactive $base01 $base01 $base05 $base03 $base01
+client.unfocused        $base01 $base00 $base05 $base01 $base01
+client.urgent           $base08 $base08 $base00 $base08 $base08
 client.placeholder      #181818 #181818 #d8d8d8 #181818 #181818
 client.background       #f8f8f8
