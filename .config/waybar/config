@@ -15,7 +15,7 @@
     },
 
     "cpu": {
-        "format": "{usage}% {max_frequency} GHZ",
+        "format": "{usage}% {max_frequency} GHz",
         "interval": 5,
         "states": {
                 "critical": 90

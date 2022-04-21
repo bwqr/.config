@@ -15,6 +15,8 @@ Plug 'junegunn/fzf.vim'
 
 Plug 'vim-test/vim-test'
 
+Plug 'mfussenegger/nvim-dap'
+
 Plug 'mhinz/vim-signify'
 Plug 'tpope/vim-fugitive'
 Plug 'evanleck/vim-svelte', {'branch': 'main'}
@@ -27,7 +29,19 @@ Plug 'chriskempson/base16-vim'
 
 call plug#end()
 
+function! s:base16_customize() abort
+  exec "hi Normal ctermbg=NONE"
+endfunction
+
+augroup on_change_colorschema
+  autocmd!
+  autocmd ColorScheme * call s:base16_customize()
+augroup END
+
 colorscheme base16-default-dark
+
+let g:airline_theme='base16'
+let g:tmuxline_powerline_separators = 0
 
 syntax enable
 filetype plugin indent on
@@ -72,8 +86,6 @@ let g:svelte_preprocessors = ['ts']
 set undodir=~/.vim/undodir
 set undofile
 
-" Airline Tmuxline
-let g:tmuxline_powerline_separators = 0
 
 " Set completeopt to have a better completion experience
 " :help completeopt
@@ -127,6 +139,27 @@ nnoremap <C-f> :Rg <CR>
 
 nnoremap <C-s> <C-^>
 
+let s:hidden_all = 0
+function! ToggleHiddenAll()
+    if s:hidden_all  == 0
+        let s:hidden_all = 1
+        set number!
+        set signcolumn=no
+        set noshowmode
+        set noruler
+        set laststatus=0
+        set noshowcmd
+    else
+        let s:hidden_all = 0
+        set number
+        set signcolumn=auto
+        set showmode
+        set ruler
+        set laststatus=2
+        set showcmd
+    endif
+endfunction
+
 " Configure LSP
 " https://github.com/neovim/nvim-lspconfig#rust_analyzer
 lua <<EOF
@@ -159,10 +192,10 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
   buf_set_keymap('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
   buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-  buf_set_keymap('n', '<space>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
-  buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
-  buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
-  buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
+  buf_set_keymap('n', '<space>e', '<cmd>lua vim.diagnostic.show_line_diagnostics()<CR>', opts)
+  buf_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
+  buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
+  buf_set_keymap('n', '<space>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
   buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
 
 end
@@ -177,7 +210,7 @@ end
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
 
-local servers = {"rust_analyzer", "tsserver", "phpactor", "pyright", "hls", "ccls", "svelte"}
+local servers = {"rust_analyzer", "tsserver", "intelephense", "pyright", "hls", "ccls", "svelte"}
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup {
     on_attach = on_attach,
@@ -203,4 +236,46 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
     update_in_insert = true,
   }
 )
+
+-- nvim-dap
+local dap = require('dap')
+dap.adapters.lldb = {
+  type = 'executable',
+  command = '/usr/bin/lldb-vscode', -- adjust as needed
+  name = "lldb"
+}
+dap.configurations.rust = {
+  {
+    name = "Launch",
+    type = "lldb",
+    request = "launch",
+    program = function()
+      return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+    end,
+    cwd = '${workspaceFolder}',
+    stopOnEntry = false,
+    args = {},
+
+    -- 💀
+    -- if you change `runInTerminal` to true, you might need to change the yama/ptrace_scope setting:
+    --
+    --    echo 0 | sudo tee /proc/sys/kernel/yama/ptrace_scope
+    --
+    -- Otherwise you might get the following error:
+    --
+    --    Error on launch: Failed to attach to the target process
+    --
+    -- But you should be aware of the implications:
+    -- https://www.kernel.org/doc/html/latest/admin-guide/LSM/Yama.html
+
+    runInTerminal = false,
+
+    -- 💀
+    -- If you use `runInTerminal = true` and resize the terminal window,
+    -- lldb-vscode will receive a `SIGWINCH` signal which can cause problems
+    -- To avoid that uncomment the following option
+    -- See https://github.com/mfussenegger/nvim-dap/issues/236#issuecomment-1066306073
+    postRunCommands = {'process handle -p true -s false -n false SIGWINCH'}
+  },
+}
 EOF
