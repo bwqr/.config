@@ -48,6 +48,9 @@ let g:tmuxline_powerline_separators = 0
 syntax enable
 filetype plugin indent on
 
+" fzf
+" [Buffers] Jump to the existing window if possible
+let g:fzf_buffers_jump = 1
 
 " nvim-compe
 let g:compe = {}
@@ -136,6 +139,8 @@ set shiftwidth=4
 "
 " ; as :
 nnoremap ; :
+
+nnoremap <C-a> :TestLast <CR>
 
 nnoremap <C-n> :Files .<CR>
 nnoremap <C-f> :Rg <CR>
