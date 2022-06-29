@@ -31,13 +31,15 @@
     },
 
    "network": {
-        "format-ethernet": "{ifname} {ipaddr}/{cidr}",
+        "interval": 2,
+        "tooltip-format": "{ipaddr}",
+        "format-ethernet": "d {bandwidthDownBytes} u {bandwidthUpBytes}",
         "format-disconnected": "Disconnected"
     },
 
     "temperature": {
-            "hwmon-path": "/sys/class/hwmon/hwmon1/temp1_input",
-            "interval": 5
+        "hwmon-path": "/sys/class/hwmon/hwmon1/temp1_input",
+        "interval": 5
     },
 
     "custom/gpu-info": {
@@ -46,7 +48,7 @@
     },
 
     "pulseaudio": {
-            "scroll-step": 5,
-            "format": "{volume}%",
+        "scroll-step": 5,
+        "format": "{volume}%",
     },
 }

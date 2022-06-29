@@ -27,6 +27,8 @@ Plug 'edkolev/tmuxline.vim'
 
 Plug 'chriskempson/base16-vim'
 
+Plug 'folke/zen-mode.nvim'
+
 call plug#end()
 
 function! s:base16_customize() abort
@@ -93,6 +95,7 @@ set undofile
 " noinsert: Do not insert text until a selection is made
 " noselect: Do not select, force user to select one from the menu
 set completeopt=menuone,noinsert
+set completeopt=menuone,noselect
 
 " Avoid showing extra messages when using completion
 set shortmess+=c
@@ -278,4 +281,7 @@ dap.configurations.rust = {
     postRunCommands = {'process handle -p true -s false -n false SIGWINCH'}
   },
 }
+
+require("zen-mode").setup { }
+
 EOF

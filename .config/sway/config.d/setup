@@ -9,11 +9,11 @@ input "type:keyboard" {
 	repeat_rate 30
 }
 
-output HDMI-A-2 resolution 1920x1080@75Hz position 0,0 bg /home/fmk/Pictures/wallpapers/active.jpg stretch
+output HDMI-A-2 resolution 1920x1080@75Hz position 0,0 bg '/home/fmk/Pictures/wallpapers/minimal-great-wave-b68uh9gvk6k55fig.jpg' fill
 
 
-titlebar_padding 8 2
-titlebar_border_thickness 2
+titlebar_padding 8 1
+titlebar_border_thickness 0
 font monospace 11
 
 workspace_auto_back_and_forth yes
@@ -31,34 +31,34 @@ gaps inner 8
 smart_gaps on
 
 smart_borders on
-default_border pixel 2 
+default_border pixel 1
 
 seat seat0 xcursor_theme BreezeX-Light 30
 
 set $gnome-schema org.gnome.desktop.interface
 exec_always {
-    gsettings set $gnome-schema gtk-theme 'Graphite-dark'
+    gsettings set $gnome-schema gtk-theme 'Solarized-BLACK-Blue'
     gsettings set $gnome-schema icon-theme 'breeze-dark'
     gsettings set $gnome-schema cursor-theme 'BreezeX-Light'
     gsettings set $gnome-schema font-name 'Noto Sans 11'
 }
 
-set $base00 #000000
-set $base01 #121212
-set $base02 #222222
-set $base03 #333333
-set $base04 #999999
-set $base05 #c1c1c1
-set $base06 #999999
-set $base07 #c1c1c1
-set $base08 #5f8787
-set $base09 #aaaaaa
-set $base0A #5f81a5
-set $base0B #d0dfee
-set $base0C #aaaaaa
-set $base0D #888888
-set $base0E #999999
-set $base0F #444444
+set $base00 #202746
+set $base01 #293256
+set $base02 #5e6687
+set $base03 #6b7394
+set $base04 #898ea4
+set $base05 #979db4
+set $base06 #dfe2f1
+set $base07 #f5f7ff
+set $base08 #c94922
+set $base09 #c76b29
+set $base0A #c08b30
+set $base0B #ac9739
+set $base0C #22a2c9
+set $base0D #3d8fd1
+set $base0E #6679cc
+set $base0F #9c637a
 
 #                       Border  BG      Text    Ind     Child Border
 client.focused          $base0D $base0D $base00 $base0D $base0D
