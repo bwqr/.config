@@ -1,0 +1,3 @@
+sys-apps/fwupd -man uefi nvme gnutls
+virtual/libusb udev
+dev-libs/libusb udev

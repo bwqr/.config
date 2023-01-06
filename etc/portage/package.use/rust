@@ -1,1 +1,1 @@
-dev-lang/rust clippy rustfmt rls system-llvm rust-src
+dev-lang/rust clippy rustfmt system-llvm rust-src rust-analyzer

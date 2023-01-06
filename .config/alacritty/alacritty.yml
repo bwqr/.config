@@ -2,14 +2,14 @@ env:
   TERM: xterm-256color
 
 import:
-  - ~/.config/alacritty/colors/base16-atelier-sulphurpool.yml
+  - ~/.config/alacritty/colors/base16-ocean.yml
 
 window:
   dynamic_title: true
-#  opacity: 0.8
+    #opacity: 0.95
   padding:
-    x: 8
-    y: 8
+    x: 0
+    y: 0
 
 bell:
   duration: 100
@@ -23,6 +23,9 @@ cursor:
 font:
   normal:
     family: 'Fira Code'
+    style: 'SemiBold'
+  bold:
+      family: 'Fira Code'
   size: 12
   offset:
-    y: 4
+    y: 8

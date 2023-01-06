@@ -218,7 +218,7 @@ end
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
 
-local servers = {"rust_analyzer", "tsserver", "intelephense", "pyright", "hls", "ccls", "svelte"}
+local servers = {"rust_analyzer", "tsserver", "intelephense", "pylsp", "hls", "ccls", "svelte"}
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup {
     on_attach = on_attach,
@@ -286,6 +286,9 @@ dap.configurations.rust = {
     postRunCommands = {'process handle -p true -s false -n false SIGWINCH'}
   },
 }
+
+dap.configurations.cpp = dap.configurations.rust
+dap.configurations.c = dap.configurations.rust
 
 require("zen-mode").setup { }
 

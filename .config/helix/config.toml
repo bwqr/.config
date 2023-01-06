@@ -1,0 +1,16 @@
+theme="onedark"
+
+[editor]
+color-modes=true
+auto-format=false
+
+[editor.cursor-shape]
+insert="bar"
+
+[keys.normal]
+":"="collapse_selection"
+";"="command_mode"
+
+[keys.select]
+":"="collapse_selection"
+";"="command_mode"

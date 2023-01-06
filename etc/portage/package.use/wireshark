@@ -1,0 +1,2 @@
+sys-libs/zlib minizip
+dev-qt/qtgui egl eglfs

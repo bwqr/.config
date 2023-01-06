@@ -1,3 +1,3 @@
-www-client/firefox dbus hwaccel geckodriver screencast
+www-client/firefox dbus hwaccel geckodriver screencast openh264 system-harfbuzz system-icu system-jpeg system-libvpx system-libevent lto
+
 media-libs/libvpx postproc
-media-plugins/alsa-plugins pulseaudio

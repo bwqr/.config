@@ -1,9 +1,9 @@
-exec --no-startup-id /usr/libexec/polkit-gnome-authentication-agent-1
-exec --no-startup-id playerctld
-exec --no-startup-id mako
-exec --no-startup-id xsettingsd
-exec --no-startup-id 'gnome-keyring-daemon --start --components=secrets,pkcs11'
-exec --no-startup-id gentoo-pipewire-launcher
-exec --no-startup-id /usr/libexec/xdg-desktop-portal-wlr -r
-exec --no-startup-id /usr/libexec/xdg-desktop-portal-gtk -r
-exec --no-startup-id "sh -c 'sleep 5;exec /usr/libexec/xdg-desktop-portal -r'"
+exec /usr/libexec/polkit-gnome-authentication-agent-1
+exec playerctld daemon
+exec mako
+exec xsettingsd
+exec 'gnome-keyring-daemon --start --components=secrets,pkcs11'
+exec gentoo-pipewire-launcher
+exec /usr/libexec/xdg-desktop-portal-wlr -r
+exec /usr/libexec/xdg-desktop-portal-gtk -r
+exec "sh -c 'sleep 5;exec /usr/libexec/xdg-desktop-portal -r'"

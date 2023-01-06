@@ -1,0 +1,9 @@
+[credential]
+	helper = store --file ~/.config/git/credentials
+[user]
+	email = <email>
+	name = <username>
+[pull]
+	rebase = false
+[init]
+	defaultBranch = main

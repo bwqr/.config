@@ -1,10 +1,10 @@
 {
     "layer": "top", 
     "position": "top",
-    "height": 24, 
+    "height": 26, 
     "modules-left": ["sway/workspaces", "sway/mode"],
-    "modules-center": ["sway/window"],
-    "modules-right": ["network", "cpu", "temperature", "custom/gpu-info", "memory", "disk", "pulseaudio", "clock", "tray"],
+    "modules-center": [],
+    "modules-right": ["network", "cpu", "temperature", "custom/gpu-info", "memory", "disk", "pulseaudio", "clock", "sway/language", "tray"],
 
    "tray": {
         "spacing": 10,
@@ -23,7 +23,8 @@
     },
 
     "memory": {
-        "format": "{used:0.1f}GB RAM"
+        "format": "{used:0.1f}GB",
+        "interval": 10,
     },
 
     "disk": {
@@ -38,7 +39,7 @@
     },
 
     "temperature": {
-        "hwmon-path": "/sys/class/hwmon/hwmon1/temp1_input",
+        "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
         "interval": 5
     },
 
@@ -51,4 +52,14 @@
         "scroll-step": 5,
         "format": "{volume}%",
     },
+    "wlr/taskbar": {
+        "format": "{icon}",
+        "icon-size": 18,
+        "tooltip-format": "{title}",
+        "on-click": "activate",
+        "on-click-middle": "close",
+        "ignore-list": [
+            "Alacritty"
+        ],
+    }
 }

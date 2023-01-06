@@ -1,92 +1,85 @@
 * {
     border: none;
-    font-family: "Noto Sans";
-    font-weight: bold;
-    font-size: 14px;
+    border-radius: 0px;
+    font-family: "Fira Code";
+    font-weight: 600;
+    font-size: 13px;
 }
 
 window {
 }
-window#waybar {
-    background: rgba(120, 120, 120, 0.4);
-    color: rgb(240, 240, 240);
-    text-shadow: 1px 1px 3px rgba(40, 40, 40, .45);
-}
 
-#window {
-    padding: 0px 8px;
-    border-bottom: 2px solid white;
+window#waybar {
+    background: #2b303b;
+    color: #8fa1b3;
 }
 
 #workspaces button {
-    color: white;
-    margin-bottom: 1px;
-    padding: 0px 1px;
+    color: #8fa1b3;
+    padding: 0px 8px;
+    margin: 0px;
 }
 
 #workspaces button.focused {
-    color: rgb(240, 100, 130);
-    background: rgba(240, 100, 130, 0.1);
-    text-shadow: 1px 1px 1px rgba(240, 100, 130, 0.4);
-}
-
-#workspaces {
-    margin-bottom: 1px;
-    margin-left: 5px;
+    border: solid 1px #8fa1b3;
 }
 
 #mode {
     margin-bottom: 1px;
-    border-bottom: 2px solid rgb(240, 100, 130);
+    border-bottom: 2px solid white;
 }
 
-#clock, #cpu, #memory, #custom-gpu-info, #temperature, #network, #pulseaudio, #disk, #tray {
-    margin-bottom: 1px;
-    padding: 0px 6px;
+#clock, #cpu, #memory, #custom-gpu-info, #temperature, #network, #pulseaudio, #disk, #tray, #language {
+    padding: 2px;
+    margin-top: 2px;
+    margin-bottom: 2px;
 }
 
-#cpu, #custom-gpu-info, #temperature {
-    border-bottom: 2px solid rgb(40, 200, 40);
+#network {
+    border-right: solid 2px #8fa1b3;
+    padding-right: 10px;
+    margin-right: 10px;
 }
-#cpu {
-    margin-left: 5px;
-}
+
 #custom-gpu-info {
-    margin-right: 5px;
+    border-right: solid 2px #8fa1b3;
+    padding-right: 10px;
+    margin-right: 10px;
 }
 #cpu.critical {
         color: red;
 }
-
-#network {
-    border-bottom: 2px solid rgb(200, 40, 40);
-    margin-right: 8px;
-    margin-left: 8px;
+#temperature {
+    border-right: solid 2px #8fa1b3;
+    padding-right: 10px;
+    margin-right: 10px;
 }
 
-#memory, #disk {
-    border-bottom: 2px solid rgb(180, 40, 100);
-}
 #memory {
-    margin-left: 8px;
+    margin-right: 5px;
 }
 
 #disk {
-    margin-right: 8px;
+    border-right: solid 2px #8fa1b3;
+    padding-right: 10px;
+    margin-right: 10px;
 }
 
-#pulseaudio, #clock {
-    border-bottom: 2px solid rgb(200, 100, 40);
-}
 #pulseaudio {
-    margin-left: 8px;
+    margin-right: 5px;
 }
+
 #clock {
-    margin-right: 8px;
+    border-right: solid 2px #8fa1b3;
+    padding-right: 10px;
+    margin-right: 10px;
 }
 
 #tray {
-    border-bottom: 2px solid #646464;
-    margin-right: 8px;
-    margin-left: 8px;
+    border-left: solid 2px #8fa1b3;
+    padding-left: 10px;
+}
+
+#language {
+    margin-right: 10px;
 }
