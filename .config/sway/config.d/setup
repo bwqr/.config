@@ -9,7 +9,7 @@ input "type:keyboard" {
 	repeat_rate 30
 }
 
-output HDMI-A-2 resolution 1920x1080@75Hz position 0,0 bg '~/Pictures/wallpapers/wp11345838-gentoo-linux-wallpapers.jpeg' stretch
+output HDMI-A-2 resolution 1920x1080@75Hz position 0,0 bg '~/Pictures/wallpapers/CEB3k9d.jpeg' stretch
 
 titlebar_padding 8 1
 titlebar_border_thickness 0
@@ -32,38 +32,39 @@ smart_gaps on
 smart_borders on
 default_border pixel 2
 
-seat seat0 xcursor_theme BreezeX-Dark 30
+seat seat0 xcursor_theme breeze_cursors 30
 
 set $gnome-schema org.gnome.desktop.interface
 exec_always {
     gsettings set $gnome-schema gtk-theme 'Adwaita-dark'
     gsettings set $gnome-schema icon-theme 'breeze-dark'
-    gsettings set $gnome-schema cursor-theme 'BreezeX-Dark'
+    gsettings set $gnome-schema cursor-theme 'breeze_cursors'
+    gsettings set $gnome-schema color-scheme 'prefer-dark'
     gsettings set $gnome-schema font-name 'Noto Sans 11'
 }
 
-## Base16 Ocean
-# Author: Chris Kempson (http://chriskempson.com)
+## Base16 Atlas
+# Author: Alex Lende (https://ajlende.com)
 
-set $base00 #2b303b
-set $base01 #343d46
-set $base02 #4f5b66
-set $base03 #65737e
-set $base04 #a7adba
-set $base05 #c0c5ce
-set $base06 #dfe1e8
-set $base07 #eff1f5
-set $base08 #bf616a
-set $base09 #d08770
-set $base0A #ebcb8b
-set $base0B #a3be8c
-set $base0C #96b5b4
-set $base0D #8fa1b3
-set $base0E #b48ead
-set $base0F #ab7967
+set $base00 #002635
+set $base01 #00384d
+set $base02 #517F8D
+set $base03 #6C8B91
+set $base04 #869696
+set $base05 #a1a19a
+set $base06 #e6e6dc
+set $base07 #fafaf8
+set $base08 #ff5a67
+set $base09 #f08e48
+set $base0A #ffcc1b
+set $base0B #7fc06e
+set $base0C #14747e
+set $base0D #5dd7b9
+set $base0E #9a70a4
+set $base0F #c43060
 
 #                       Border  BG      Text    Ind     Child Border
-client.focused          $base0D $base0D $base00 $base0D $base0D
+client.focused          $base04 $base04 $base00 $base04 $base04
 client.focused_inactive $base01 $base01 $base05 $base03 $base01
 client.unfocused        $base01 $base00 $base05 $base01 $base01
 client.urgent           $base08 $base08 $base00 $base08 $base08

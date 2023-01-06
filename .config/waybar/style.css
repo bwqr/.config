@@ -1,3 +1,5 @@
+@import "./colors/base16-atlas.css";
+
 * {
     border: none;
     border-radius: 0px;
@@ -10,18 +12,18 @@ window {
 }
 
 window#waybar {
-    background: #2b303b;
-    color: #8fa1b3;
+    background: @base01;
+    color: @base04;
 }
 
 #workspaces button {
-    color: #8fa1b3;
+    color: @base04;
     padding: 0px 8px;
     margin: 0px;
 }
 
 #workspaces button.focused {
-    border: solid 1px #8fa1b3;
+    border: solid 1px @base04;
 }
 
 #mode {
@@ -36,13 +38,13 @@ window#waybar {
 }
 
 #network {
-    border-right: solid 2px #8fa1b3;
+    border-right: solid 2px @base04;
     padding-right: 10px;
     margin-right: 10px;
 }
 
 #custom-gpu-info {
-    border-right: solid 2px #8fa1b3;
+    border-right: solid 2px @base04;
     padding-right: 10px;
     margin-right: 10px;
 }
@@ -50,7 +52,7 @@ window#waybar {
         color: red;
 }
 #temperature {
-    border-right: solid 2px #8fa1b3;
+    border-right: solid 2px @base04;
     padding-right: 10px;
     margin-right: 10px;
 }
@@ -60,7 +62,7 @@ window#waybar {
 }
 
 #disk {
-    border-right: solid 2px #8fa1b3;
+    border-right: solid 2px @base04;
     padding-right: 10px;
     margin-right: 10px;
 }
@@ -70,13 +72,13 @@ window#waybar {
 }
 
 #clock {
-    border-right: solid 2px #8fa1b3;
+    border-right: solid 2px @base04;
     padding-right: 10px;
     margin-right: 10px;
 }
 
 #tray {
-    border-left: solid 2px #8fa1b3;
+    border-left: solid 2px @base04;
     padding-left: 10px;
 }
 
