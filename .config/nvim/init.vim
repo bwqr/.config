@@ -2,48 +2,26 @@
 set nocompatible
 
 call plug#begin('~/.vim/plugged')
-
-" Collection of common configurations for the Nvim LSP client
 Plug 'neovim/nvim-lspconfig'
-" Extensions to built-in LSP, for example, providing type inlay hints
-Plug 'nvim-lua/lsp_extensions.nvim'
-
-Plug 'hrsh7th/nvim-compe'
+Plug 'hrsh7th/nvim-cmp'
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'L3MON4D3/LuaSnip'
+Plug 'saadparwaiz1/cmp_luasnip'
 
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-
-Plug 'vim-test/vim-test'
-
-Plug 'mfussenegger/nvim-dap'
+Plug 'nvim-tree/nvim-tree.lua'
 
 Plug 'mhinz/vim-signify'
-Plug 'tpope/vim-fugitive'
+Plug 'vim-test/vim-test'
 Plug 'evanleck/vim-svelte', {'branch': 'main'}
 
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
 Plug 'edkolev/tmuxline.vim'
-
-Plug 'chriskempson/base16-vim'
-
-Plug 'folke/zen-mode.nvim'
-
 call plug#end()
 
-function! s:base16_customize() abort
-  exec "hi Normal ctermbg=NONE"
-endfunction
-
-augroup on_change_colorschema
-  autocmd!
-  autocmd ColorScheme * call s:base16_customize()
-augroup END
-
-colorscheme base16-default-dark
-
-let g:airline_theme='base16'
 let g:tmuxline_powerline_separators = 0
+colorscheme fmkhome
+set termguicolors
 
 syntax enable
 filetype plugin indent on
@@ -52,56 +30,8 @@ filetype plugin indent on
 " [Buffers] Jump to the existing window if possible
 let g:fzf_buffers_jump = 1
 
-" nvim-compe
-let g:compe = {}
-let g:compe.enabled = v:true
-let g:compe.autocomplete = v:true
-let g:compe.debug = v:false
-let g:compe.min_length = 1
-let g:compe.preselect = 'enable'
-let g:compe.throttle_time = 80
-let g:compe.source_timeout = 200
-let g:compe.resolve_timeout = 800
-let g:compe.incomplete_delay = 400
-let g:compe.max_abbr_width = 100
-let g:compe.max_kind_width = 100
-let g:compe.max_menu_width = 100
-let g:compe.documentation = v:true
-
-let g:compe.source = {}
-let g:compe.source.path = v:true
-let g:compe.source.buffer = v:true
-let g:compe.source.calc = v:false
-let g:compe.source.nvim_lsp = v:true
-let g:compe.source.nvim_lua = v:false
-let g:compe.source.vsnip = v:false
-let g:compe.source.ultisnips = v:false
-let g:compe.source.luasnip = v:false
-let g:compe.source.emoji = v:true
-
-inoremap <silent><expr> <C-Space> compe#complete()
-inoremap <silent><expr> <CR>      compe#confirm('<CR>')
-inoremap <silent><expr> <C-e>     compe#close('<C-e>')
-inoremap <silent><expr> <C-f>     compe#scroll({ 'delta': +4 })
-inoremap <silent><expr> <C-d>     compe#scroll({ 'delta': -4 })
-
-let g:svelte_preprocessor_tags = [ { 'name': 'ts', 'tag': 'script', 'as': 'typescript' } ]
-let g:svelte_preprocessors = ['ts']
-
 set undodir=~/.vim/undodir
 set undofile
-
-
-" Set completeopt to have a better completion experience
-" :help completeopt
-" menuone: popup even when there's only one match
-" noinsert: Do not insert text until a selection is made
-" noselect: Do not select, force user to select one from the menu
-set completeopt=menuone,noinsert
-set completeopt=menuone,noselect
-
-" Avoid showing extra messages when using completion
-set shortmess+=c
 
 " show the line number
 set number
@@ -120,12 +50,7 @@ set scrolloff=2
 set signcolumn
 
 " show the currently typed command
-"set showcmd
-
-" first <Tab> will complete to the longest common string, next <Tab> or
-" <S-Tab> will start cycling 
-set wildmenu
-set wildmode=longest:full,full
+set showcmd
 
 " Use the syntax method of folding.
 set foldmethod=syntax
@@ -147,10 +72,10 @@ nnoremap <C-f> :Rg <CR>
 
 nnoremap <C-s> <C-^>
 
-let s:hidden_all = 0
+let s:all_hidden = 0
 function! ToggleHiddenAll()
-    if s:hidden_all  == 0
-        let s:hidden_all = 1
+    if s:all_hidden  == 0
+        let s:all_hidden = 1
         set number!
         set signcolumn=no
         set noshowmode
@@ -158,7 +83,7 @@ function! ToggleHiddenAll()
         set laststatus=0
         set noshowcmd
     else
-        let s:hidden_all = 0
+        let s:all_hidden = 0
         set number
         set signcolumn=auto
         set showmode
@@ -168,74 +93,105 @@ function! ToggleHiddenAll()
     endif
 endfunction
 
-" Configure LSP
-" https://github.com/neovim/nvim-lspconfig#rust_analyzer
+" Configure Plugins
 lua <<EOF
 
--- nvim_lsp object
-local nvim_lsp = require'lspconfig'
+-- nvim_lsp setup
+vim.api.nvim_create_autocmd('LspAttach', {
+  group = vim.api.nvim_create_augroup('UserLspConfig', {}),
+  callback = function(ev)
+    -- Enable completion triggered by <c-x><c-o>
+    vim.bo[ev.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
 
--- Use an on_attach function to only map the following keys
--- after the language server attaches to the current buffer
-local on_attach = function(client, bufnr)
-  local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
-  local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
+    -- Buffer local mappings.
+    -- See `:help vim.lsp.*` for documentation on any of the below functions
+    local opts = { buffer = ev.buf }
+    vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
+    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
+    vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
+    vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
+    vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts)
+    vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, opts)
+    vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, opts)
+    vim.keymap.set('n', '<space>wl', function()
+      print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+    end, opts)
+    vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, opts)
+    vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, opts)
+    vim.keymap.set({ 'n', 'v' }, '<space>ca', vim.lsp.buf.code_action, opts)
+    vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
+    vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
+    vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
+    vim.keymap.set('n', '<space>f', function()
+      vim.lsp.buf.format { async = true }
+    end, opts)
+  end,
+})
 
-  --Enable completion triggered by <c-x><c-o>
-  buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
+-- Add additional capabilities supported by nvim-cmp
+local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-  -- Mappings.
-  local opts = { noremap=true, silent=true }
-
-  -- See `:help vim.lsp.*` for documentation on any of the below functions
-  buf_set_keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-  buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
-  buf_set_keymap('n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
-  buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-  buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-  buf_set_keymap('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
-  buf_set_keymap('n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
-  buf_set_keymap('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
-  buf_set_keymap('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
-  buf_set_keymap('n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-  buf_set_keymap('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
-  buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-  buf_set_keymap('n', '<space>e', '<cmd>lua vim.diagnostic.show_line_diagnostics()<CR>', opts)
-  buf_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
-  buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
-  buf_set_keymap('n', '<space>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
-  buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
-
-end
-
--- function to attach completion when setting up lsp
--- local on_attach = function(client)
---    require'completion'.on_attach(client)
--- end
-
--- Enable rust_analyzer
--- nvim_lsp.rust_analyzer.setup({ on_attach=on_attach })
--- Use a loop to conveniently call 'setup' on multiple servers and
--- map buffer local keybindings when the language server attaches
-
-local servers = {"rust_analyzer", "tsserver", "intelephense", "pyright", "hls", "ccls", "svelte"}
+local lspconfig = require'lspconfig'
+local servers = {"tsserver", "intelephense", "pylsp", "hls", "ccls", "svelte"}
 for _, lsp in ipairs(servers) do
-  nvim_lsp[lsp].setup {
-    on_attach = on_attach,
+  lspconfig[lsp].setup {
     flags = {
       debounce_text_changes = 500,
-    }
+    },
+    capabilities = capabilities,
   }
 end
 
--- angularls_cmd = {"npx", "ngserver", "--stdio", "--tsProbeLocations", "./" , "--ngProbeLocations", "./"}
--- nvim_lsp.angularls.setup{
---     cmd = angularls_cmd,
---     on_new_config = function(new_config, new_root_dir)
---         new_config.cmd = angularls_cmd
---     end,
--- }
+lspconfig.rust_analyzer.setup {
+    flags = {
+      debounce_text_changes = 500,
+    }
+}
 
+-- luasnip setup
+local luasnip = require 'luasnip'
+
+-- nvim-cmp setup
+local cmp = require 'cmp'
+cmp.setup {
+  snippet = {
+    expand = function(args)
+      luasnip.lsp_expand(args.body)
+    end,
+  },
+  mapping = cmp.mapping.preset.insert({
+    ['<C-u>'] = cmp.mapping.scroll_docs(-4), -- Up
+    ['<C-d>'] = cmp.mapping.scroll_docs(4), -- Down
+    -- C-b (back) C-f (forward) for snippet placeholder navigation.
+    ['<C-Space>'] = cmp.mapping.complete(),
+    ['<CR>'] = cmp.mapping.confirm {
+      behavior = cmp.ConfirmBehavior.Replace,
+      select = true,
+    },
+    ['<Tab>'] = cmp.mapping(function(fallback)
+      if cmp.visible() then
+        cmp.select_next_item()
+      elseif luasnip.expand_or_jumpable() then
+        luasnip.expand_or_jump()
+      else
+        fallback()
+      end
+    end, { 'i', 's' }),
+    ['<S-Tab>'] = cmp.mapping(function(fallback)
+      if cmp.visible() then
+        cmp.select_prev_item()
+      elseif luasnip.jumpable(-1) then
+        luasnip.jump(-1)
+      else
+        fallback()
+      end
+    end, { 'i', 's' }),
+  }),
+  sources = {
+    { name = 'nvim_lsp' },
+    { name = 'luasnip' },
+  },
+}
 -- Enable diagnostics
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   vim.lsp.diagnostic.on_publish_diagnostics, {
@@ -245,51 +201,17 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   }
 )
 
--- nvim-dap
-local dap = require('dap')
-dap.adapters.lldb = {
-  type = 'executable',
-  command = '/usr/bin/lldb-vscode', -- adjust as needed
-  name = "lldb"
-}
-dap.configurations.rust = {
-  {
-    name = "Launch",
-    type = "lldb",
-    request = "launch",
-    program = function()
-      return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
-    end,
-    cwd = '${workspaceFolder}',
-    stopOnEntry = false,
-    args = {},
+-- nvim-tree setup
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
 
-    -- 💀
-    -- if you change `runInTerminal` to true, you might need to change the yama/ptrace_scope setting:
-    --
-    --    echo 0 | sudo tee /proc/sys/kernel/yama/ptrace_scope
-    --
-    -- Otherwise you might get the following error:
-    --
-    --    Error on launch: Failed to attach to the target process
-    --
-    -- But you should be aware of the implications:
-    -- https://www.kernel.org/doc/html/latest/admin-guide/LSM/Yama.html
-
-    runInTerminal = false,
-
-    -- 💀
-    -- If you use `runInTerminal = true` and resize the terminal window,
-    -- lldb-vscode will receive a `SIGWINCH` signal which can cause problems
-    -- To avoid that uncomment the following option
-    -- See https://github.com/mfussenegger/nvim-dap/issues/236#issuecomment-1066306073
-    postRunCommands = {'process handle -p true -s false -n false SIGWINCH'}
+require("nvim-tree").setup({
+  sort_by = "case_sensitive",
+  view = {
+    width = 35,
   },
-}
-
-dap.configurations.cpp = dap.configurations.rust
-dap.configurations.c = dap.configurations.rust
-
-require("zen-mode").setup { }
-
+  renderer = {
+    group_empty = true,
+  },
+})
 EOF
