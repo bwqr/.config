@@ -1,29 +1,55 @@
-@import "./colors/base16-atlas.css";
+@import "./theme.css";
+
+@define-color color @base06;
+@define-color background @base00;
 
 * {
     border: none;
     border-radius: 0px;
-    font-family: "Fira Code";
+    font-family: "monospace";
     font-weight: 600;
-    font-size: 13px;
+    font-size: 16px;
 }
 
 window {
+    color: @color;
 }
 
 window#waybar {
-    background: @base01;
-    color: @base04;
+    background: transparent;
+}
+
+#custom-gentoo {
+    margin: 3px 0px;
+    margin-left: 15px;
+    background: @base00;
+    border: none;
+    border-radius: 10px;
+    padding: 3px 12px 1px 12px;
+}
+
+#workspaces {
+    margin-right: 15px;
+    color: @color;
 }
 
 #workspaces button {
-    color: @base04;
-    padding: 0px 8px;
-    margin: 0px;
+    color: @color;
+    background: @background;
+    border: none;
+    padding: 3px 12px 1px 12px;
+    min-width: 20px;
+    min-height: 22px;
 }
 
 #workspaces button.focused {
-    border: solid 1px @base04;
+    color: @base00;
+    border-radius: 2px;
+    background: @base0D;
+}
+
+#workspaces button:last-child {
+    border-radius: 0px 10px 10px 0px;
 }
 
 #mode {
@@ -31,57 +57,113 @@ window#waybar {
     border-bottom: 2px solid white;
 }
 
-#clock, #cpu, #memory, #custom-gpu-info, #temperature, #network, #pulseaudio, #disk, #tray, #language {
-    padding: 2px;
-    margin-top: 2px;
-    margin-bottom: 2px;
+#clock {
+    margin: 3px 15px 3px 0px;
+    background: @background;
+    border: none;
+    border-radius: 10px;
+    padding: 3px 12px 1px 12px;
 }
 
-#network {
-    border-right: solid 2px @base04;
-    padding-right: 10px;
-    margin-right: 10px;
+#cpu {
+    margin: 3px 0px;
+    background: @background;
+    border: none;
+    border-radius: 10px 0px 0px 10px;
+    padding: 3px 12px 1px 12px;
 }
 
-#custom-gpu-info {
-    border-right: solid 2px @base04;
-    padding-right: 10px;
-    margin-right: 10px;
+#temperature, #custom-gpu-info {
+    margin: 3px 0px;
+    background: @background;
+    padding: 3px 12px 1px 12px;
 }
-#cpu.critical {
-        color: red;
+
+#temperature.gpu, #custom-gpu-info {
+    border: none;
+    border-radius: 0px 10px 10px 0px;
+    margin-right: 15px;
 }
-#temperature {
-    border-right: solid 2px @base04;
-    padding-right: 10px;
-    margin-right: 10px;
+
+#temperature.critical, #cpu.critical, #memory.critical, #network.disconnected, #custom-gpu-info.critical {
+    color: @base0F;
+}
+
+#memory.warning {
+    color: @base0A;
 }
 
 #memory {
-    margin-right: 5px;
+    margin: 3px 0px;
+    background: @background;
+    border: none;
+    border-radius: 10px 0px 0px 10px;
+    padding: 3px 12px 1px 12px;
 }
 
 #disk {
-    border-right: solid 2px @base04;
-    padding-right: 10px;
-    margin-right: 10px;
+    margin: 3px 0px;
+    margin-right: 15px;
+    background: @background;
+    border: none;
+    border-radius: 0px 10px 10px 0px;
+    padding: 3px 12px 1px 12px;
+}
+
+#network {
+    margin: 3px 0px;
+    background: @background;
+    border: none;
+    border-radius: 10px 0px 0px 10px;
+    padding: 3px 12px 1px 12px;
+}
+
+#bluetooth {
+    margin: 3px 0px;
+    margin-right: 15px;
+    background: @background;
+    border: none;
+    border-radius: 0px 10px 10px 0px;
+    padding: 3px 12px 1px 12px;
 }
 
 #pulseaudio {
-    margin-right: 5px;
-}
-
-#clock {
-    border-right: solid 2px @base04;
-    padding-right: 10px;
-    margin-right: 10px;
-}
-
-#tray {
-    border-left: solid 2px @base04;
-    padding-left: 10px;
+    margin: 3px 0px;
+    background: @background;
+    border: none;
+    border-radius: 10px 0px 0px 10px;
+    padding: 3px 12px 1px 12px;
 }
 
 #language {
-    margin-right: 10px;
+    margin: 3px 0px;
+    background: @background;
+    padding: 3px 12px 1px 12px;
+}
+
+#custom-dark-mode-switcher {
+    margin: 3px 0px;
+    margin-right: 15px;
+    background: @background;
+    border: none;
+    border-radius: 0px 10px 10px 0px;
+    padding: 3px 12px 1px 8px;
+}
+
+#tray {
+    margin: 3px 0px;
+    background: @background;
+    border: none;
+    border-radius: 10px 0px 0px 10px;
+    padding: 3px 12px 1px 12px;
+}
+
+#custom-notification {
+    margin: 3px 0px;
+    margin-left: -10px;
+    margin-right: 5px;
+    background: @background;
+    border: none;
+    border-radius: 10px;
+    padding: 3px 12px 1px 12px;
 }

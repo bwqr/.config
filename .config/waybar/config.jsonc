@@ -1,0 +1,174 @@
+{
+    "layer": "top", 
+    "position": "top",
+    "height": 26, 
+    "modules-left": ["sway/workspaces", "sway/mode"],
+    "modules-center": [],
+    "modules-right": ["network", "bluetooth", "cpu", "temperature#cpu", "custom/gpu-info", "memory", "disk", "pulseaudio", "sway/language", "custom/dark-mode-switcher", "clock", "tray", "custom/notification"],
+
+    "custom/gentoo": {
+        "format": "󰣨",
+        "tooltip": false
+    },
+
+    "sway/workspaces": {
+        "disable-scroll": true
+    },
+
+   "tray": {
+        "spacing": 10
+    },
+
+    "clock": {
+        "format": "  {:%H:%M}",
+        "tooltip-format": "{:%d-%m-%Y}"
+    },
+
+    "cpu": {
+        "format": "  {usage}%",
+        "interval": 5,
+        "states": {
+            "critical": 90
+        }
+    },
+
+    "custom/gpu-info": {
+        "exec": "~/.local/bin/gpu-info.sh /sys/devices/pci0000:00/0000:00:03.1/0000:0a:00.0",
+        "interval": 5,
+        "return-type": "json",
+        "format": "{icon} {}°C",
+        "format-critical": " {}°C",
+        "critical-threshold": 70,
+        "format-icons": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+        ]
+    },
+
+    "temperature#gpu": {
+        "hwmon-path": "/sys/devices/pci0000:00/0000:00:03.1/0000:0a:00.0/hwmon",
+        "input-filename": "temp1_input",
+        "interval": 5,
+        "format": "{icon} {temperatureC}°C",
+        "format-critical": " {temperatureC}°C",
+        "critical-threshold": 70,
+        "format-icons": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+        ],
+        "tooltip-format": "GPU {temperatureC}°C"
+},
+
+    "temperature#cpu": {
+        "hwmon-path-abs": "/sys/devices/pci0000:00/0000:00:18.3/hwmon",
+        "input-filename": "temp1_input",
+        "interval": 5,
+        "format": "{icon} {temperatureC}°C",
+        "format-critical": " {temperatureC}°C",
+        "critical-threshold": 70,
+        "format-icons": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+        ],
+        "tooltip-format": "CPU {temperatureC}°C"
+    },
+
+    "memory": {
+        "format": "  {percentage}%",
+        "interval": 5,
+        "states": {
+            "warning": 80,
+            "critical": 90
+        },
+        "tooltip-format": "Mem {used:0.1f}/{total:0.1f} GiB, Swap {swapUsed:0.1f}/{swapTotal:0.1f} GiB"
+    },
+
+    "disk": {
+        "format": "󰆼 {used}"
+    },
+
+   "network": {
+        "interval": 2,
+        "format-wifi": "  {essid} ({signalStrength}%)",
+        "format-ethernet": "",
+        "format-disconnected": "Disconnected", //An empty format will hide the module.
+        "tooltip-format-wifi": "{essid} ({signalStrength}%) ",
+        "tooltip-format": "{ipaddr} 󰜮 {bandwidthDownBits} 󰜷 {bandwidthUpBits}"
+    },
+
+    "pulseaudio": {
+      "format": "{icon} {volume}%",
+      "format-bluetooth": "{icon} {volume}%",
+      "format-muted": "󰝟 -%",
+      "format-icons": {
+        "headphone": "󰋋",
+        "default": ["", "", "󰕾", "󰕾", "󰕾", "", "", ""]
+      },
+      "scroll-step": 5
+    },
+
+    "bluetooth": {
+            // "controller": "controller1", // specify the alias of the controller if there are more than 1 on the system
+            "format": "",
+            "format-disabled": "", // an empty format will hide the module
+            "format-connected": " {num_connections}",
+            "format-connected-battery": " {device_alias} {device_battery_percentage}%",
+            "tooltip-format": "{controller_alias}\t{controller_address}",
+            "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{device_enumerate}",
+            "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+            "tooltip-format-connected-battery": "{device_battery_percentage}%"
+    },
+
+    "wlr/taskbar": {
+        "format": "{icon}",
+        "icon-size": 18,
+        "tooltip-format": "{title}",
+        "on-click": "activate",
+        "on-click-middle": "close",
+        "ignore-list": [
+            "Alacritty"
+        ]
+    },
+
+    "custom/notification": {
+        "tooltip": false,
+        "format": "{icon}",
+        "format-icons": {
+            "notification": "󰂚<span foreground='red'><sup></sup></span>",
+            "none": "󰂚",
+            "dnd-notification": "󰂛<span foreground='red'><sup></sup></span>",
+            "dnd-none": "󰂛"
+        },
+        "return-type": "json",
+        "exec-if": "which swaync-client",
+        "exec": "swaync-client -swb",
+        "on-click": "swaync-client -t -sw",
+        "on-click-right": "swaync-client -d -sw",
+        "escape": true
+    },
+
+    "custom/dark-mode-switcher": {
+        "tooltip": "{}",
+        "exec": "~/.local/bin/dark-mode-switcher.sh",
+        "on-click": "~/.local/bin/dark-mode-switcher.sh toggle",
+        "interval": 60
+    }
+}
