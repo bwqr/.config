@@ -1,9 +1,4 @@
-exec /usr/libexec/polkit-gnome-authentication-agent-1
+exec /usr/libexec/polkit-mate-authentication-agent-1
 exec playerctld daemon
-exec mako
+exec swaync
 exec xsettingsd
-#exec 'gnome-keyring-daemon --start --components=secrets,pkcs11'
-#exec gentoo-pipewire-launcher
-exec /usr/libexec/xdg-desktop-portal-wlr -r
-exec /usr/libexec/xdg-desktop-portal-gtk -r
-exec "sh -c 'sleep 5;exec /usr/libexec/xdg-desktop-portal -r'"
