@@ -1,3 +1,0 @@
-xfce-base/thunar udisks libnotify
-gnome-base/gvfs udisks
-dev-libs/libdbusmenu gtk3

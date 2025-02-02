@@ -1,31 +1,34 @@
-env:
-  TERM: xterm-256color
+[general]
+import = ["./theme.toml"]
 
-import:
-  - ~/.config/alacritty/colors/base16-ocean.yml
+[bell]
+color = "#777777"
+duration = 100
 
-window:
-  dynamic_title: true
-    #opacity: 0.95
-  padding:
-    x: 0
-    y: 0
+[cursor.style]
+blinking = "On"
+shape = "Underline"
 
-bell:
-  duration: 100
-  color: '#777777'
+[env]
+TERM = "xterm-256color"
 
-cursor:
-  style:
-    shape: Underline
-    blinking: On
+[font]
+size = 14
 
-font:
-  normal:
-    family: 'Fira Code'
-    style: 'SemiBold'
-  bold:
-      family: 'Fira Code'
-  size: 12
-  offset:
-    y: 8
+[font.bold]
+family = "Fira Code"
+
+[font.normal]
+family = "Fira Code"
+style = "SemiBold"
+
+[font.offset]
+x = 0
+y = 6
+
+[window]
+dynamic_title = true
+
+[window.padding]
+x = 0
+y = 0

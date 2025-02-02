@@ -1,0 +1,7 @@
+[[language]]
+name = "typescript"
+indent = { tab-width = 4, unit = "  " }
+
+[[language]]
+name = "tsx"
+indent = { tab-width = 4, unit = "  " }

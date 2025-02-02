@@ -1,4 +1,4 @@
-theme="onedark"
+theme="base16_default"
 
 [editor]
 color-modes=true
@@ -7,10 +7,12 @@ auto-format=false
 [editor.cursor-shape]
 insert="bar"
 
+[editor.soft-wrap]
+enable = true
+
 [keys.normal]
-":"="collapse_selection"
+"esc"="collapse_selection"
 ";"="command_mode"
 
 [keys.select]
-":"="collapse_selection"
 ";"="command_mode"

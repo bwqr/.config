@@ -1,0 +1,214 @@
+@import './theme.css';
+
+.notification-row {
+  background: transparent;
+}
+
+.notification-row:focus,
+.notification-row:hover {
+}
+
+.notification {
+    box-shadow: 0 0 0 1px alpha(@base0D, 0.15), 0 1px 2px 1px alpha(@base0D, 0.15), 0 2px 4px 2px alpha(@base0D, 0.15);
+    padding: 4px;
+    background: @base00;
+}
+
+/* Uncomment to enable specific urgency colors
+.low {
+  background: @base0A;
+  padding: 6px;
+  border-radius: 12px;
+}
+
+.normal {
+  background: @base0B;
+  padding: 6px;
+  border-radius: 12px;
+}
+
+.critical {
+  background: @base08;
+  padding: 6px;
+  border-radius: 12px;
+}
+*/
+
+.notification-content {
+}
+
+.close-button {
+  border-radius: 100%;
+  margin-top: 10px;
+  margin-right: 16px;
+  min-width: 24px;
+  min-height: 24px;
+}
+
+.close-button:hover {
+  box-shadow: none;
+  transition: all 0.15s ease-in-out;
+  border: none;
+}
+
+.notification-default-action,
+.notification-action {
+  padding: 4px;
+  color: @base04;
+  background: transparent;
+}
+
+.notification-default-action:hover,
+.notification-action:hover {
+  -gtk-icon-effect: none;
+}
+
+.notification-default-action {
+}
+
+/* When alternative actions are visible */
+.notification-default-action:not(:only-child) {
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+.notification-default-action:only-child {
+    border: none;
+}
+
+.notification-action {
+}
+
+/* add bottom border radius to eliminate clipping */
+.notification-action:first-child {
+  border-bottom-left-radius: 10px;
+}
+
+.notification-action:last-child {
+  border-bottom-right-radius: 10px;
+  border-right: 1px solid;
+}
+
+.image {
+}
+
+.body-image {
+  margin-top: 6px;
+  background-color: @base05;
+  border-radius: 12px;
+}
+
+.summary {
+  font-size: 16px;
+  font-weight: bold;
+  background: transparent;
+  color: @base04;
+  text-shadow: none;
+}
+
+.time {
+  font-size: 16px;
+  font-weight: bold;
+  background: transparent;
+  color: @base04;
+  text-shadow: none;
+  margin-right: 18px;
+}
+
+.body {
+  font-size: 15px;
+  font-weight: normal;
+  background: transparent;
+  color: @base04;
+  text-shadow: none;
+}
+
+/* The "Notifications" and "Do Not Disturb" text widget */
+.top-action-title {
+  color: @base04;
+  text-shadow: none;
+}
+
+.control-center {
+    border-radius: 12px;
+  background: transparent;
+  padding: 12px;
+  margin: 12px;
+}
+
+.control-center-list {
+  background: transparent;
+}
+
+.floating-notifications {
+  background: transparent;
+}
+
+/* Window behind control center and on all other monitors */
+.blank-window {
+  background: alpha(@base0D, 0.2);
+}
+
+/*** Widgets ***/
+
+/* Title widget */
+.widget-title {
+  font-size: 1.5rem;
+  margin-bottom: 32px;
+}
+.widget-title > button {
+  background: @base02;
+  color: @base04;
+  box-shadow: none;
+  border-radius: 12px;
+}
+.widget-title > button:hover {
+    background: @base03;
+}
+
+/* DND widget */
+.widget-dnd {
+    box-shadow: 0 0 0 1px alpha(@base0D, 0.15), 0 1px 2px 1px alpha(@base0D, 0.15), 0 2px 4px 2px alpha(@base0D, 0.15);
+    background: @base00;
+    padding: 15px;
+    margin: 16px 0px;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    color: @base05;
+}
+.widget-dnd > switch {
+  border-radius: 12px;
+  background: @base00;
+  border-color: @base02;
+}
+.widget-dnd > switch:checked {
+    background: @base0D;
+}
+.widget-dnd > switch slider {
+  border-radius: 12px;
+}
+
+/* Label widget */
+.widget-label {
+}
+.widget-label > label {
+  font-size: 1.1rem;
+}
+
+/* Mpris widget */
+.widget-mpris {
+    box-shadow: 0 0 0 1px alpha(@base0D, 0.15), 0 1px 2px 1px alpha(@base0D, 0.15), 0 2px 4px 2px alpha(@base0D, 0.15);
+    background: @base00;
+    padding: 15px;
+    border-radius: 10px;
+    color: @base05;
+}
+.widget-mpris-player {
+    color: @base01;
+}
+.widget-mpris-title {
+  font-weight: bold;
+  font-size: 1.25rem;
+}
+.widget-mpris-subtitle {
+  font-size: 1.1rem;
+}

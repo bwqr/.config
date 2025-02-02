@@ -1,6 +1,6 @@
 @import "./theme.css";
 
-@define-color color @base06;
+@define-color color @base05;
 @define-color background @base00;
 
 * {
@@ -38,6 +38,8 @@ window#waybar {
     background: @background;
     border: none;
     padding: 3px 12px 1px 12px;
+    margin: 0px;
+    box-shadow: none;
     min-width: 20px;
     min-height: 22px;
 }

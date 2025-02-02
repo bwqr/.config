@@ -1,2 +1,0 @@
-sys-kernel/linux-firmware @BINARY-REDISTRIBUTABLE
-sys-firmware/amd-microcode amd-ucode

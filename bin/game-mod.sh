@@ -1,24 +1,12 @@
-card=/sys/class/drm/card0/device
-hwmon="${card}/hwmon/hwmon4"
+card=/sys/devices/pci0000:00/0000:00:03.1/0000:0a:00.0
+hwmon="$card/hwmon/$(ls $card/hwmon | head -n 1)"
 
 if [ "$1" == optimal ];
 then
-    cpupower frequency-set -g performance
-    echo manual > "${card}/power_dpm_force_performance_level"
-    echo '0 1' > "${card}/pp_dpm_sclk"
-    echo '0 1 2' > "${card}/pp_dpm_mclk"
-    echo '0 1' > "${card}/pp_dpm_pcie"
-    echo 56500000 > "${hwmon}/power1_cap"
+    echo 59500000 > "${hwmon}/power1_cap"
 elif [ "$1" == performance ];
 then
-    cpupower frequency-set -g performance
-    echo manual > "${card}/power_dpm_force_performance_level"
-    echo '0 1 2 3' > "${card}/pp_dpm_sclk"
-    echo '0 1 2' > "${card}/pp_dpm_mclk"
-    echo '0 1' > "${card}/pp_dpm_pcie"
-    echo 100500000 > "${hwmon}/power1_cap"
+    echo 110500000 > "${hwmon}/power1_cap"
 else
-    cpupower frequency-set -g performance
-    echo low > "${card}/power_dpm_force_performance_level"
-    echo `cat ${hwmon}/power1_cap_default` > "${hwmon}/power1_cap"
+    echo 8500000 > "${hwmon}/power1_cap"
 fi

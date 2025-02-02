@@ -36,7 +36,7 @@
         "exec": "~/.local/bin/gpu-info.sh /sys/devices/pci0000:00/0000:00:03.1/0000:0a:00.0",
         "interval": 5,
         "return-type": "json",
-        "format": "{icon} {}°C",
+        "format": "{icon} {0}°C",
         "format-critical": " {}°C",
         "critical-threshold": 70,
         "format-icons": [

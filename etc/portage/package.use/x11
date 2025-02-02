@@ -1,6 +1,0 @@
-# gtk+
-x11-libs/cairo X aqua
-dev-cpp/cairomm X
-
-# firefox
-x11-libs/libxkbcommon X

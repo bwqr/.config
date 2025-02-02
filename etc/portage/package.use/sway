@@ -1,5 +1,0 @@
-gui-wm/sway wallpapers X
-gui-libs/wlroots X
-media-libs/vulkan-loader X
-x11-libs/gdk-pixbuf jpeg
-gui-apps/swaybg gdk-pixbuf
